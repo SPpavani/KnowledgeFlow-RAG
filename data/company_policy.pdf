@@ -1,0 +1,18 @@
+# ── CREATE A SYNTHETIC PDF ────────────────────────────────────────────────
+from fpdf import FPDF
+import os
+
+# Ensure data folder exists
+os.makedirs("data", exist_ok=True)
+
+pdf = FPDF()
+pdf.add_page()
+pdf.set_font("Arial", size=12)
+
+pdf.multi_cell(0, 10, "Company Policy 2026\n\n")
+pdf.multi_cell(0, 10, "Employees are eligible for annual bonuses based on performance.\n")
+pdf.multi_cell(0, 10, "Leave policy allows 20 paid leaves per year.\n")
+pdf.multi_cell(0, 10, "Remote work is permitted up to 3 days per week.\n")
+
+pdf.output("data/company_policy.pdf")
+print("Synthetic PDF created at data/company_policy.pdf")
