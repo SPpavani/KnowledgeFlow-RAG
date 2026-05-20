@@ -1,21 +1,20 @@
-# ── IMPORTS ────────────────────────────────────────────────
 from langchain_community.document_loaders import PyPDFLoader, CSVLoader, WebBaseLoader
 
-# ── LOAD PDF ────────────────────────────────────────────────
-pdf_loader = PyPDFLoader("data/company_policy.pdf")   # <-- make sure this file exists
+# PDF
+pdf_loader = PyPDFLoader("data/company_policy.pdf")   # <-- synthetic PDF we generated
 pdf_docs = pdf_loader.load()
-print(f"PDF docs: {len(pdf_docs)}")
 
-# ── LOAD CSV ────────────────────────────────────────────────
-csv_loader = CSVLoader("data/product_faq.csv", source_column="question")  # <-- make sure this file exists
+# CSV
+csv_loader = CSVLoader("data/product_faq.csv", source_column="question")
 csv_docs = csv_loader.load()
-print(f"CSV docs: {len(csv_docs)}")
 
-# ── LOAD WEB DOCS ────────────────────────────────────────────────
-web_loader = WebBaseLoader("https://docs.yourcompany.com/api")  # <-- replace with a real URL
+# Web
+web_loader = WebBaseLoader("https://docs.python.org/3/")
 web_docs = web_loader.load()
-print(f"Web docs: {len(web_docs)}")
 
-# ── MERGE SOURCES ────────────────────────────────────────────────
+# Merge
 all_docs = pdf_docs + csv_docs + web_docs
+print(f"PDF docs: {len(pdf_docs)}")
+print(f"CSV docs: {len(csv_docs)}")
+print(f"Web docs: {len(web_docs)}")
 print(f"Total merged docs: {len(all_docs)}")
